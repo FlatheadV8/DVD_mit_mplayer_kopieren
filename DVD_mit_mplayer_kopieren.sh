@@ -23,7 +23,7 @@
 #
 #------------------------------------------------------------------------------#
 
-VERSION="v2019090601"
+VERSION="v2019090602"
 
 ### FreeBSD
 #DVD_DEV="/dev/cd0"
@@ -38,7 +38,7 @@ DVD_DEV="$(ls -1 /dev/dvd* /dev/cd* 2>/dev/null | head -n1)"
 
 DVD_IDENTIFY="$(mplayer dvd:// -dvd-device ${DVD_DEV} -vo null -ao null -identify -frames 0 -novideo -nosound -nocache 2>/dev/null)"
 TITEL_NR="$(echo "${DVD_IDENTIFY}" | grep -E '^ID_DVD_TITLE_[0-9]+_LENGTH=' | tr -s '[_.=]' ' ' | awk '{print $6,$4}' | awk '{print $NF}')"
-DVD_TITEL="$(echo "${DVD_IDENTIFY}" | grep -E '^ID_DVD_VOLUME_ID=' | tr -s '["=]' ' ' | awk '{print $NF}' | tr -s '[ .]' '_')"
+DVD_TITEL="$(echo "${DVD_IDENTIFY}" | grep -E '^ID_DVD_VOLUME_ID=' | tr -s '["]' ' ' | awk -F'=' '{print $NF}' | tr -s ' ' '_')"
 echo "1. DVD_TITEL='${DVD_TITEL}'"
 
 if [ "x${DVD_TITEL}" == "x" ] ; then
