@@ -15,6 +15,13 @@
 # dpkg-reconfigure libdvd-pkg
 #
 #------------------------------------------------------------------------------#
+### FreeBSD
+#
+# cd /usr/ports/multimedia/libdvdread/ && make config
+# cd /usr/ports/multimedia/libdvdread && make clean ; make && make install && make clean
+# cd /usr/ports/multimedia/mplayer && make clean ; make && make install && make clean
+#
+#------------------------------------------------------------------------------#
 
 VERSION="v2019090601"
 
